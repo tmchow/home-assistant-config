@@ -1,0 +1,120 @@
+homeassistant:
+  auth_providers:
+    - type: homeassistant
+    - type: trusted_networks
+      trusted_networks:
+        - 192.168.1.0/24
+        - 10.241.0.0/16
+  customize: !include customize.yaml
+  customize_glob: !include customize_glob.yaml
+
+http:
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+
+default_config:
+config:
+updater:
+breaking_changes:
+
+discovery:
+#  ignore:
+#    - plex_mediaserver
+
+logger:
+  default: info
+#  logs:
+#    custom_components.hacs: debug
+#    hacs: debug
+#    queueman: debug
+#    AIOGitHubAPI: debug
+
+mqtt:
+  broker: 192.168.1.161
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  
+life360:
+  accounts:
+    - username: !secret life360_username
+      password: !secret life360_password
+
+device_tracker:
+  - platform: icloud3_dev
+    username: !secret email_trevin
+    password: !secret icloud_password
+    tracking_method: famshr
+    track_devices:
+      - trevin_iphone > /local/images/trevin.png
+      - allison_iphone > /local/images/allison.png
+
+alexa_media:
+  accounts:
+    - email: !secret email_trevin
+      password: !secret amazon_password
+      url: amazon.com
+      include_devices:
+        - "Kitchen"
+        - "Living Room"
+        - "Playroom"
+        - "Master Bedroom"
+        - "Upstairs Bathroom"
+        - "Kid's Room"
+        - "Attic"
+
+bond:
+  host: 192.168.1.165
+  token: !secret bond_token
+
+# IFTTT
+ifttt:
+  key: !secret ifttt_key
+
+notify:
+  - platform: alexa_media
+    name: alexa_media
+  - name: iphone_all
+    platform: group
+    services:
+      - service: ios_trevin_iphone
+      - service: ios_allison_iphone
+
+kumo:
+  username: !secret email_trevin
+  password: !secret kumo_password
+  prefer_cache: true
+  connect_timeout: 1.5
+  response_timeout: 8.0
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_key
+
+#tuya:
+#  username: !secret tuya_username
+#  password: !secret tuya_password
+#  country_code: 1
+
+panel_custom:
+  - name: zwavegraph2
+    sidebar_title: Z-Wave Graph
+    sidebar_icon: mdi:access-point-network
+    url_path: zwave
+
+tts:
+  - platform: google_translate
+    service_name: google_say
+    base_url: https://2rpnz0g8hfke9kct9lr3sy7045mtrld1.ui.nabu.casa
+
+zwave:
+  usb_path: /dev/ttyACM0
+  network_key: !secret zwave_network_key
+
+automation: !include automations.yaml
+binary_sensor: !include sensors_binary.yaml
+group: !include groups.yaml
+ios: !include ios_categories.yaml
+sensor: !include sensors.yaml
+script: !include scripts.yaml
+zone: !include zones.yaml
+homekit: !include homekit.yaml

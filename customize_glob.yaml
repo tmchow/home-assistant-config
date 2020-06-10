@@ -1,0 +1,21 @@
+"media_player.*_alexa":
+  icon: mdi:amazon-alexa
+"device_tracker.iphone*":
+  icon: mdi:cellphone-wireless
+"device_tracker.life360_*_iphone":
+  icon: mdi:cellphone-iphone
+"device_tracker.*_ipad*":
+  icon: mdi:tablet-ipad
+"sensor.*_battery_low":
+  icon: mdi:battery-10
+"binary_sensor.*_door":
+  device_class: door
+  icon: mdi:door
+"binary_sensor.*_motion":
+  icon: mdi:motion-sensor
+"binary_sensor.*_camera_person_detected":
+  icon: mdi:motion-sensor
+"binary_sensor.*_motion_detected":
+  icon: mdi:motion-sensor
+"binary_sensor.*_camera_front_activity":
+  icon: mdi:motion-sensor

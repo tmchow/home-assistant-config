@@ -1,0 +1,20 @@
+alexa_all:
+  name: Alexa
+  entities:
+    - media_player.kitchen_alexa
+    - media_player.master_bedroom_alexa
+    - media_player.living_room_alexa
+    - media_player.bathroom_2f_alexa
+
+alexa_downstairs:
+  name: Alexa
+  entities:
+    - media_player.kitchen_alexa
+    - media_player.living_room_alexa
+
+doors:
+  name: Doors
+  entities:
+    - binary_sensor.front_door
+    - binary_sensor.side_door
+    - binary_sensor.back_door

@@ -1,0 +1,73 @@
+####################################################
+#
+# Sensors
+#
+####################################################
+
+#### TRAVEL AND LOCATION ###################
+- platform: waze_travel_time
+  name: Waze Trevin to Ali
+  origin: person.trevin
+  destination: person.allison
+  region: 'US'
+
+#### AMBIENT ###################
+
+
+
+#### BATTERY ###################
+- platform: attributes
+  friendly_name: "Batteries"
+  attribute: battery_level
+  unit_of_measurement: "%"
+  entities:
+    - zwave.playroom_multisensor
+    - zwave.foyer_multisensor
+    - zwave.front_door_lock
+    - zwave.kids_room_multisensor
+    - zwave.master_bedroom_multisensor
+    - zwave.playroom_multisensor
+    - zwave.basement_dehumidifier_flood_sensor
+    - zwave.basement_water_tank_flood_sensor
+    - zwave.bathroom_2f_flood_sensor
+    - zwave.kitchen_sink_flood_sensor
+
+- platform: attributes
+  friendly_name: "Batteries - Abode"
+  attribute: battery_low
+  entities:
+    - binary_sensor.back_door
+    - binary_sensor.dining_room_glass
+    - binary_sensor.foyer_glass_sensor
+    - binary_sensor.front_door
+    - binary_sensor.front_right_window
+    - binary_sensor.keypad
+    - binary_sensor.side_door
+    - binary_sensor.siren
+
+#### NETWORKING ################
+
+
+#### WEATHER ###################
+- platform: nws_alerts
+  zone_id: 'WAZ558'
+- platform: darksky
+  api_key: !secret darksky_key
+  forecast:
+    - 0
+  hourly_forecast:
+    - 0
+    - 1
+  monitored_conditions:
+    - summary
+    - icon
+    - temperature
+    - precip_probability
+    - apparent_temperature
+    - daily_summary
+  scan_interval:
+    days: 0
+    hours: 0
+    minutes: 5
+    seconds: 0
+    milliseconds: 0

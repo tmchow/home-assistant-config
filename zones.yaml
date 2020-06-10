@@ -1,0 +1,31 @@
+# Zones
+# https://www.home-assistant.io/components/zone/
+
+# # Home Ringfence
+# - name: Home
+#   latitude: !secret home_latitude
+#   longitude: !secret home_longitude
+#   radius: 150
+#   icon: mdi:home
+
+# # Trevin's Work
+# - name: Trevin Work
+#   latitude: !secret trevin_work_latitude
+#   longitude: !secret trevin_work_longitude
+#   radius: 100
+#   icon: mdi:briefcase
+
+# # Bus Stop (Home)
+# - name: Home Bus Stop
+#   latitude: !secret home_bus_stop_latitude
+#   longitude: !secret home_bus_stop_longitude
+#   radius: 50
+#   passive: true
+
+# # Bus Stop (Work)
+# - name: Work Bus Stop
+#   latitude: !secret work_bus_stop_latitude
+#   longitude: !secret work_bus_stop_longitude
+#   radius: 100
+#   passive: true
+  

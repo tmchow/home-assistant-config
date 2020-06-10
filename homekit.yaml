@@ -1,0 +1,44 @@
+##############################################################
+#
+# HomeKit configuration
+# Docs: https://www.home-assistant.io/components/homekit/
+#
+##############################################################
+auto_start: false
+ip_address: 192.168.1.162
+filter:
+  include_domains:
+    - alarm_control_panel
+    - light
+  include_entities:
+    - binary_sensor.kids_room_motion
+    - binary_sensor.foyer_motion
+    - binary_sensor.master_bedroom_motion
+    - binary_sensor.playroom_motion
+    - lock.front_door
+    - climate.attic
+    - climate.main
+    - fan.master_bedroom_ceiling_fan
+    - switch.backyard_light
+    - switch.front_porch_light
+    - switch.side_door_light
+  exclude_entities:
+    - light.custom_group_for_lights
+    - light.custom_group_for_lights_2
+    - light.office
+entity_config:
+  binary_sensor.ruby_room_motion:
+    linked_battery_sensor: sensor.kids_room_multisensor_battery_level
+    low_battery_threshold: 30
+  binary_sensor.foyer_motion:
+    linked_battery_sensor: sensor.foyer_multisensor_battery_level
+    low_battery_threshold: 30
+  binary_sensor.master_bedroom_motion:
+    linked_battery_sensor: sensor.master_bedroom_multisensor_battery_level
+    low_battery_threshold: 30
+  binary_sensor.playroom_motion:
+    linked_battery_sensor: sensor.playroom_multisensor_battery_level
+    low_battery_threshold: 30
+  lock.front_door:
+    linked_battery_sensor: sensor.front_door_lock_battery_level
+    low_battery_threshold: 30

@@ -1,0 +1,81 @@
+########################
+#
+# Scripts
+#
+########################
+  abodeaway:
+    alias: 'Abode Arm'
+    sequence:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.abodestatus
+          option: armed_away
+      - service: alarm_control_panel.alarm_arm_away
+        entity_id:
+          - alarm_control_panel.abode_alarm_system
+
+  abodehome:
+    alias: 'Abode Home'
+    sequence:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.abodestatus
+          option: armed_home
+      - service: alarm_control_panel.alarm_arm_home
+        entity_id:
+          - alarm_control_panel.abode_alarm_system
+
+  abodestandby:
+    alias: 'Abode Standby'
+    sequence:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.abodestatus
+          option: disarmed
+      - service: alarm_control_panel.alarm_disarm
+        entity_id:
+          - alarm_control_panel.abode_alarm_system
+      
+  arm_security:
+    alias: 'Arm Security'
+    sequence:
+      - delay: 00:05:00
+      - service: homeassistant.turn_on
+        entity_id: script.abodeaway
+
+  disarm_security:
+    alias: 'Disarm Security'
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: script.abodestandby
+        
+  sonos_say:
+    alias: "Sonos TTS script"
+    sequence:
+    - service: sonos.snapshot
+      data_template:
+        entity_id: "{{ sonos_entity }}"
+    - service: sonos.unjoin
+      data_template:
+        entity_id:  "{{ sonos_entity }}"
+    - service: media_player.volume_set
+      data_template:
+        entity_id:  "{{ sonos_entity }}"
+        volume_level: "{{ volume }}"
+    - service: tts.google_say
+      data_template:
+        entity_id:  "{{ sonos_entity }}"
+        message: "{{ message }}"
+    - delay: '00:00:01'
+    - delay: >-
+        {% set duration = states[sonos_entity].attributes.media_duration %}
+        {% if duration > 0 %}
+          {% set duration = duration - 1 %}
+        {% endif %}
+        {% set seconds = duration % 60 %}
+        {% set minutes = (duration / 60)|int % 60 %}
+        {% set hours = (duration / 3600)|int %}
+        {{ [hours, minutes, seconds]|join(':') }}
+    - service: sonos.restore
+      data_template:
+        entity_id:  "{{ sonos_entity }}"

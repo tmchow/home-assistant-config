@@ -1,0 +1,25 @@
+push:
+  categories:
+    - name: Alarm
+      identifier: 'alarm'
+      actions:
+        - identifier: 'ALARM_ARM'
+          title: 'Arm Alarm'
+        - identifier: 'ALARM_DISARM'
+          title: 'Stay disarmed'
+    - name: Arrival
+      identifier: 'arrival_trevin'
+      actions:
+        - identifier: 'NOTIFY_AND_ANNOUNCE_ARRIVAL_TREVIN'
+          title: 'Notify + Alexa Announce'      
+        - identifier: 'NOTIFY_ARRIVAL_TREVIN'
+          title: 'Phone notification only'
+        - identifier: 'CANCEL'
+          title: 'Cancel'
+    - name: Depart Work
+      identifier: 'depart_work_trevin'
+      actions:
+        - identifier: 'NOTIFY_TREVIN_DEPART_WORK'
+          title: 'Notify Ali'
+        - identifier: 'CANCEL'
+          title: 'Cancel'

@@ -1,0 +1,126 @@
+sensor.zooz_zse40_4_in_1_sensor_clock:
+  ignored: false
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_relative_humidity:
+  ignored: false
+  polling_intensity: 0
+sensor.jasco_products_zw6302_portable_smart_motion_sensor_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.jasco_products_zw6302_portable_smart_motion_sensor_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_appliance_3:
+  ignored: true
+  polling_intensity: 0
+binary_sensor.zooz_zse40_4_in_1_sensor_sensor_3:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_sourcenodeid_3:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_sourcenodeid_2:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_power_management:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_emergency:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_appliance_2:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_alarm_type_2:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_sourcenodeid_4:
+  ignored: true
+  polling_intensity: 0
+binary_sensor.zooz_zse40_4_in_1_sensor_sensor_4:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_homehealth:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgfs101_flood_sensor_alarm_level_3:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgfs101_flood_sensor_alarm_type_3:
+  ignored: true
+  polling_intensity: 0
+binary_sensor.fibaro_system_fgfs101_flood_sensor_general_3:
+  ignored: true
+  polling_intensity: 0
+binary_sensor.fibaro_system_fgfs101_flood_sensor_sensor_3:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgfs101_flood_sensor_alarm_level_2:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgfs101_flood_sensor_alarm_type_2:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_alarm_level_3:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_alarm_type_3:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_alarm_level:
+  ignored: true
+  polling_intensity: 0
+binary_sensor.zooz_zse40_4_in_1_sensor_sensor_2:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_alarm_level_4:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_alarm_type_4:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_alarm_level_2:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_appliance:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_power_management_2:
+  ignored: true
+  polling_intensity: 0
+binary_sensor.zooz_zse40_4_in_1_sensor_sensor:
+  ignored: true
+  polling_intensity: 0
+sensor.zooz_zse40_4_in_1_sensor_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgfs101_flood_sensor_temperature_2:
+  ignored: true
+  polling_intensity: 0
+binary_sensor.fibaro_system_fgfs101_flood_sensor_sensor_2:
+  ignored: true
+  polling_intensity: 0
+binary_sensor.fibaro_system_fgfs101_flood_sensor_general_2:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgfs101_flood_sensor_alarm_type:
+  ignored: true
+  polling_intensity: 0
+sensor.fibaro_system_fgfs101_flood_sensor_alarm_level:
+  ignored: true
+  polling_intensity: 0
+sensor.basement_dehumidifier_flood_sensor_temperature_3:
+  ignored: false
+  polling_intensity: 0
+binary_sensor.fibaro_system_fgfs101_flood_sensor_general:
+  ignored: true
+  polling_intensity: 0
+binary_sensor.fibaro_system_fgfs101_flood_sensor_sensor:
+  ignored: true
+  polling_intensity: 0
+switch.jasco_products_14291_in_wall_smart_switch_switch:
+  ignored: false
+  polling_intensity: 0
