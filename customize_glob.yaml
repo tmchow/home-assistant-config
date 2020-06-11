@@ -1,4 +1,4 @@
-"media_player.*_alexa":
+"media_player.alexa_*":
   icon: mdi:amazon-alexa
 "device_tracker.iphone*":
   icon: mdi:cellphone-wireless
