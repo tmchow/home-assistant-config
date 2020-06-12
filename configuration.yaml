@@ -47,6 +47,7 @@ device_tracker:
     track_devices:
       - trevin_iphone > /local/images/trevin.png
       - allison_iphone > /local/images/allison.png
+#    config_ic3_file_name: config_icloud3.yaml
 
 alexa_media:
   accounts:
@@ -69,6 +70,10 @@ bond:
 # IFTTT
 ifttt:
   key: !secret ifttt_key
+
+o365:
+  client_secret: !secret office365_client_secret
+  client_id: !secret office365_client_id
 
 notify:
   - platform: alexa_media
