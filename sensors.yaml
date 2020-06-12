@@ -49,8 +49,6 @@
 
 
 #### WEATHER ###################
-- platform: nws_alerts
-  zone_id: 'WAZ558'
 - platform: darksky
   api_key: !secret darksky_key
   forecast:
