@@ -71,10 +71,6 @@ bond:
 ifttt:
   key: !secret ifttt_key
 
-o365:
-  client_secret: !secret office365_client_secret
-  client_id: !secret office365_client_id
-
 notify:
   - platform: alexa_media
     name: alexa_media
