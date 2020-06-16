@@ -44,10 +44,10 @@ device_tracker:
     username: !secret email_trevin
     password: !secret icloud_password
     tracking_method: famshr
-    track_devices:
-      - trevin_iphone > /local/images/trevin.png
-      - allison_iphone > /local/images/allison.png
-#    config_ic3_file_name: config_icloud3.yaml
+    config_ic3_file_name: /config/config_icloud3.yaml
+#    track_devices:
+#      - trevin_iphone > /local/images/trevin.png
+#      - allison_iphone > /local/images/allison.png
 
 alexa_media:
   accounts:
