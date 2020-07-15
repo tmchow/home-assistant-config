@@ -1,142 +1,42 @@
-
-###############################################################
-## Presence Notifications
-################################################################
-
-- alias: "Location: Trevin almost home"
+- alias: 'Location: Trevin almost home'
   initial_state: 'true'
   trigger:
-    - platform: zone
-      entity_id: person.trevin
-      zone: zone.home
-      event: enter
+  - platform: zone
+    entity_id: person.trevin
+    zone: zone.home
+    event: enter
   condition:
     condition: time
-    after: '09:00:00'
+    after: 09:00:00
     before: '23:00:00'
   action:
-    - service: notify.ios_trevin_iphone
+  - service: notify.ios_trevin_iphone
+    data:
+      message: Long press to announce arrival
       data:
-        message: 'Long press to announce arrival'
-        data:
-          push:
-            badge: 0
-            category: "arrival_trevin"
-            thread-id: "arrival_trevin_action"
-# - alias: "Location: Trevin left work"
-#   initial_state: 'true'
-#   trigger:
-#     - platform: zone
-#       entity_id: person.trevin
-#       zone: zone.work_bus_stop
-#       event: leave
-#   condition:
-#     condition: and
-#     conditions:
-#       - condition: time
-#         after: '16:00:00'
-#         before: '18:45:00'
-#       - condition: state
-#         entity_id: 'binary_sensor.workday_sensor'
-#         state: 'on'
-#   action:
-#     - service: notify.ios_trevin_iphone
-#       data:
-#         message: 'Long press to announce departure'
-#         data:
-#           push:
-#             badge: 0
-#             category: "depart_work_trevin"
-#             thread-id: "depart_work_trevin_action"
-- alias: "Location: Allison almost home"
+        push:
+          badge: 0
+          category: arrival_trevin
+          thread-id: arrival_trevin_action
+  id: 17061c76080641d28fc8e328e2e983ba
+- alias: 'Location: Allison almost home'
   initial_state: 'true'
   trigger:
-    - platform: zone
-      entity_id: person.allison
-      zone: zone.home
-      event: enter
+  - platform: zone
+    entity_id: person.allison
+    zone: zone.home
+    event: enter
   action:
-    - service: notify.ios_trevin_iphone
+  - service: notify.ios_trevin_iphone
+    data:
+      message: Allison is almost home!
       data:
-        message: "Allison is almost home!"
-        data:
-          push:
-            sound: default
-            thread-id: 'arrival_allison'
-
-#  action:
-#    - service: notify.ios_trevin_iphone
-#      data:
-#        title: "Trevin Tracker" 
-#        message: "Announced your arrival through Alexa!"
-#    - service: notify.alexa_media
-#      data:
-#        target: 
-#          group.alexa_downstairs
-#        data:
-#          type: announce
-#        message: "Daddy is almost home!"
-
-################################################################
-##
-## Media Players and Entertainment
-##
-################################################################
-
-#- id: sonos_enable_speech_enhance_and_night_sound
-#  alias: "Sonos Enable speech enhance and night sound"
-#  initial_state: 'on'
-#  trigger:
-#    - platform: state
-#      entity_id: media_player.sony_bravia_tv
-#      from: 'off'
-#      to: 'on'
-#  condition:
-#    - condition: time
-#      after: '19:00:00'
-#      before: '06:00:00'
-#  action:
-#    - service: sonos.set_option
-#      data:
-#        entity_id: media_player.living_room_sonos
-#        night_sound: true
-#    - service: sonos.set_option
-#      data:
-#        entity_id: media_player.living_room_sonos
-#        speech_enhance: true
-#- id: sonos_disable_speech_enhance_and_night_sound
-#  alias: "Sonos Disable speech enhance and night sound"
-#  initial_state: 'on'
-#  trigger:
-#    - platform: state
-#      entity_id: media_player.sony_bravia_tv
-#      to: 'off'
-  #condition:
-  #  - condition: time
-  #    after: '20:30:00'
-  #    before: '07:00:00'
-#  action:
-#    - service: sonos.set_option
-#      data:
-#        entity_id: media_player.living_room_sonos
-#        night_sound: false
-#    - service: sonos.set_option
-#      data:
-#        entity_id: media_player.living_room_sonos
-#        speech_enhance: false
-
-################################################################
-##
-## Respond to iOS Notification Actions
-##
-################################################################
-
-#####################
-# Alarm System
-#####################
-
-- alias: "Alarm: Arm It"
-  initial_state: True
+        push:
+          sound: default
+          thread-id: arrival_allison
+  id: 4050a7f912004cbfb9296483d2cfa763
+- alias: 'Alarm: Arm It'
+  initial_state: true
   trigger:
     platform: event
     event_type: ios.notification_action_fired
@@ -145,13 +45,14 @@
   action:
     service: notify.ios_trevin_iphone
     data:
-      message: "Alarm Armed"
+      message: Alarm Armed
       data:
         push:
           badge: 0
-          thread-id: "alarm_status"
-- alias: "Alarm: Disarm"
-  initial_state: True
+          thread-id: alarm_status
+  id: 00f57ae6f5164bddb38ba38bbd886d1e
+- alias: 'Alarm: Disarm'
+  initial_state: true
   trigger:
     platform: event
     event_type: ios.notification_action_fired
@@ -160,147 +61,149 @@
   action:
     service: notify.ios_trevin_iphone
     data:
-      message: "Alarm DisArmed"
+      message: Alarm DisArmed
       data:
         push:
           badge: 0
-          thread-id: "alarm_status"
-
-#########################
-# Presence Announcements
-#########################
-- alias: "Notify (Phone + Alexa): Trevin close to home"
-  initial_state: True
+          thread-id: alarm_status
+  id: ae63be977daa4344a83a79cdb221435e
+- alias: 'Notify (Phone + Alexa): Trevin close to home'
+  initial_state: true
   trigger:
     platform: event
     event_type: ios.notification_action_fired
     event_data:
       actionName: NOTIFY_AND_ANNOUNCE_ARRIVAL_TREVIN
   action:
-    - service: notify.alexa_media
+  - service: notify.alexa_media
+    data:
+      target: group.alexa_all
       data:
-        target: 
-          group.alexa_all
-        data:
-          type: announce
-        message: "Daddy is almost home!"
-    - service: notify.iphone_all
+        type: announce
+      message: Daddy is almost home!
+  - service: notify.iphone_all
+    data:
+      message: Trevin is almost home!
       data:
-        message: "Trevin is almost home!"
-        data:
-          push:
-            badge: 0
-            sound: default
-            thread-id: 'trevin_arrival'
-    - service: notify.ios_trevin_iphone
+        push:
+          badge: 0
+          sound: default
+          thread-id: trevin_arrival
+  - service: notify.ios_trevin_iphone
+    data:
+      message: 'DEBUG: Notify + Alexa announce Trevin arrival'
       data:
-        message: "DEBUG: Notify + Alexa announce Trevin arrival"
-        data:
-          push:
-            badge: 0
-            sound: default
-            thread-id: 'trevin_arrival'
-- alias: "Notify (Phone Only): Trevin close to home"
-  initial_state: True
+        push:
+          badge: 0
+          sound: default
+          thread-id: trevin_arrival
+  id: 5cb699114a1c4510b69728851281f380
+- alias: 'Notify (Phone Only): Trevin close to home'
+  initial_state: true
   trigger:
     platform: event
     event_type: ios.notification_action_fired
     event_data:
       actionName: NOTIFY_ARRIVAL_TREVIN
   action:
-    - service: notify.ios_trevin_iphone
+  - service: notify.ios_trevin_iphone
+    data:
+      message: 'DEBUG: Notified Trevin arrival by phone only'
       data:
-        message: "DEBUG: Notified Trevin arrival by phone only"
-        data:
-          push:
-            badge: 0
-            sound: default
-            thread-id: 'trevin_arrival'
-    - service: notify.iphone_all
+        push:
+          badge: 0
+          sound: default
+          thread-id: trevin_arrival
+  - service: notify.iphone_all
+    data:
+      message: Trevin is almost home!
       data:
-        message: "Trevin is almost home!"
-        data:
-          push:
-            badge: 0
-            sound: default
-            thread-id: 'trevin_arrival'
-- alias: "Notify (Phone): Trevin depart work"
-  initial_state: True
+        push:
+          badge: 0
+          sound: default
+          thread-id: trevin_arrival
+  id: e34eee96aa08462faf2246148149a1f2
+- alias: 'Notify (Phone): Trevin depart work'
+  initial_state: true
   trigger:
     platform: event
     event_type: ios.notification_action_fired
     event_data:
       actionName: NOTIFY_TREVIN_DEPART_WORK
   action:
-    - service: notify.iphone_all
+  - service: notify.iphone_all
+    data:
+      message: omaha
       data:
-        message: "omaha"
-        data:
-          push:
-            badge: 0
-            sound: default
-            thread-id: 'trevin_work_departure'
-    - service: notify.ios_trevin_iphone
+        push:
+          badge: 0
+          sound: default
+          thread-id: trevin_work_departure
+  - service: notify.ios_trevin_iphone
+    data:
+      message: 'DEBUG: Notify Trevin departure'
       data:
-        message: "DEBUG: Notify Trevin departure"
-        data:
-          push:
-            badge: 0
-            sound: default
-            thread-id: 'trevin_work_departure'
-
-###############################################################
-#
-# HomeKit - Delay startup until ZWave network is ready
-#
-################################################################
-- alias: 'Start HomeKit'
+        push:
+          badge: 0
+          sound: default
+          thread-id: trevin_work_departure
+  id: fe9bfb897ee54376a752a7c947b9f5a0
+- alias: Start HomeKit
   trigger:
-    - platform: event
-      event_type: zwave.network_ready
-    - platform: event
-      event_type: zwave.network_complete
-    - platform: event
-      event_type: zwave.network_complete_some_dead
+  - platform: event
+    event_type: zwave.network_ready
+  - platform: event
+    event_type: zwave.network_complete
+  - platform: event
+    event_type: zwave.network_complete_some_dead
   action:
-    - service: homekit.start
-
-###############################################################
-#
-# Presence
-#
-################################################################
-
+  - service: homekit.start
+  id: 771290b399dc4235b08d20531886d544
 - id: device_tracker_logging
-  alias: "Logging: Person location changes"
+  alias: 'Logging: Person location changes'
   initial_state: 'on'
   trigger:
-    - platform: state
-      entity_id:
-        - device_tracker.allison_iphone
-        - device_tracker.trevin_iphone
+  - platform: state
+    entity_id:
+    - device_tracker.allison_iphone
+    - device_tracker.trevin_iphone
   condition:
-    - condition: template
-      value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
+  - condition: template
+    value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
   action:
-    - service: logbook.log
-      data_template:
-        name: "Person: "
-        message: "{{trigger.to_state.name}} changed from {{trigger.from_state.state}} to {{trigger.to_state.state}} by {{ trigger.to_state.attributes.source }}"
-
-###############################################################
-## Notify when HASS has an update
-################################################################
-
-- alias: "Notify: HASS Update notifications"
+  - service: logbook.log
+    data_template:
+      name: 'Person: '
+      message: '{{trigger.to_state.name}} changed from {{trigger.from_state.state}}
+        to {{trigger.to_state.state}} by {{ trigger.to_state.attributes.source }}'
+- alias: 'Notify: HASS Update notifications'
   trigger:
-    - platform: state
-      entity_id: updater.updater
+  - platform: state
+    entity_id: updater.updater
   action:
-    - service: notify.ios_trevin_iphone
-      data: 
-        title: 'New Home Assistant Release'
-        message: "Home Assistant  {{ states.updater.updater.state }}  is now available."
-        data:
-          push:
-            sound: default
+  - service: notify.ios_trevin_iphone
+    data:
+      title: New Home Assistant Release
+      message: Home Assistant  {{ states.updater.updater.state }}  is now available.
+      data:
+        push:
+          sound: default
+  id: d22a31f902fa4b0884f2e7f2daaafcd5
+- id: '1594180518532'
+  alias: Detect Attic Thermostat Mode Conflict
+  description: Notify me if conflicting Attic Thermostat mode changes occur
+  trigger:
+  - entity_id: climate.attic
+    platform: state
+  condition:
+  - condition: template
+    value_template: '{{ states(''climate.attic'') != states(''climate.main'') }}'
+  - condition: template
+    value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
+  - condition: template
+    value_template: '{{ trigger.to_state.state != "off" }}'
+  action:
+  - data:
+      message: 'Attic thermostat conflict (Attic: {{ states(''climate.attic'') }},
+        Main: {{ states(''climate.main'') }})'
+    service: notify.ios_trevin_iphone
