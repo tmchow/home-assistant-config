@@ -8,9 +8,9 @@ homeassistant:
   customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
 
-http:
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
+#http:
+#  ip_ban_enabled: true
+#  login_attempts_threshold: 10
 
 default_config:
 config:
@@ -80,16 +80,16 @@ notify:
       - service: ios_trevin_iphone
       - service: ios_allison_iphone
 
-kumo:
-  username: !secret email_trevin
-  password: !secret kumo_password
-  prefer_cache: true
-  connect_timeout: 1.5
-  response_timeout: 8.0
+#kumo:
+#  username: !secret email_trevin
+#  password: !secret kumo_password
+#  prefer_cache: true
+#  connect_timeout: 1.5
+#  response_timeout: 8.0
 
 weather:
-  - platform: darksky
-    api_key: !secret darksky_key
+  - platform: openweathermap
+    api_key: !secret openweathermap_key
 
 #tuya:
 #  username: !secret tuya_username
