@@ -1,0 +1,20 @@
+# This creates Light aliases for each smart switch, since only 
+#  Light domain entities can be used in some cases
+- platform: switch
+  name: Back Porch Light
+  entity_id: switch.back_porch_light
+
+- platform: switch
+  name: Front Porch Light
+  entity_id: switch.front_porch_light
+
+- platform: switch
+  name: Side Door Light
+  entity_id: switch.side_door_light
+
+- platform: group
+  name: Outside Lights
+  entities:
+    - light.front_porch_light
+    - light.back_porch_light
+    - light.side_door_light

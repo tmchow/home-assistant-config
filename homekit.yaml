@@ -18,10 +18,14 @@ filter:
     - lock.front_door
     - climate.attic
     - climate.main
-    - fan.master_bedroom_ceiling_fan
-    - switch.backyard_light
-    - switch.front_porch_light
-    - switch.side_door_light
+    - fan.master_bedroom
+    - light.back_porch_light
+    - light.front_porch_light
+    - light.side_door_light
+    - sensor.kids_room_temperature
+    - sensor.master_bedroom_temperature
+    - sensor.foyer_temperature
+    - sensor.playroom_temperature
   exclude_entities:
     - light.custom_group_for_lights
     - light.custom_group_for_lights_2
