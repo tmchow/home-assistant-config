@@ -1,7 +1,0 @@
-# - cal_id: xxxx
-#   entities:
-#   - device_id: work_calendar
-#     end_offset: 24
-#     name: My Work Calendar
-#     start_offset: 0
-#     track: true
