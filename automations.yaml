@@ -10,7 +10,7 @@
     after: 09:00:00
     before: '23:00:00'
   action:
-  - service: notify.ios_trevin_iphone
+  - service: notify.mobile_app_trevin_iphone
     data:
       message: Long press to announce arrival
       data:
@@ -27,7 +27,7 @@
     zone: zone.home
     event: enter
   action:
-  - service: notify.ios_trevin_iphone
+  - service: notify.mobile_app_trevin_iphone
     data:
       message: Allison is almost home!
       data:
@@ -43,7 +43,7 @@
     event_data:
       actionName: ALARM_ARM
   action:
-    service: notify.ios_trevin_iphone
+    service: notify.mobile_app_trevin_iphone
     data:
       message: Alarm Armed
       data:
@@ -148,7 +148,8 @@
           sound: default
           thread-id: trevin_work_departure
   id: fe9bfb897ee54376a752a7c947b9f5a0
-- alias: Start HomeKit
+- id: 771290b399dc4235b08d20531886d544
+  alias: Start HomeKit
   trigger:
   - platform: event
     event_type: zwave.network_ready
@@ -157,8 +158,12 @@
   - platform: event
     event_type: zwave.network_complete_some_dead
   action:
+  - service: notify.telegram_chow_bot
+    data:
+      message: Z-Wave network ready, Homekit starting
   - service: homekit.start
-  id: 771290b399dc4235b08d20531886d544
+    data: {}
+  mode: single
 - id: device_tracker_logging
   alias: 'Logging: Person location changes'
   initial_state: 'on'
@@ -181,7 +186,7 @@
   - platform: state
     entity_id: updater.updater
   action:
-  - service: notify.ios_trevin_iphone
+  - service: notify.mobile_app_trevin_iphone
     data:
       title: New Home Assistant Release
       message: Home Assistant  {{ states.updater.updater.state }}  is now available.
@@ -206,4 +211,4 @@
   - data:
       message: 'Attic thermostat conflict (Attic: {{ states(''climate.attic'') }},
         Main: {{ states(''climate.main'') }})'
-    service: notify.ios_trevin_iphone
+    service: notify.mobile_app_trevin_iphone
