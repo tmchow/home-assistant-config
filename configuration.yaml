@@ -29,6 +29,16 @@ logger:
 #    queueman: debug
 #    AIOGitHubAPI: debug
 
+cloud:
+  alexa:
+    entity_config:
+      climate.attic:
+        name: Attic Thermostat
+        description: Thermostat in Attic Office
+      climate.main:
+        name: Main Thermostat
+        description: Thermostat for house
+
 mqtt:
   broker: 192.168.1.161
   username: !secret mqtt_username
@@ -40,7 +50,7 @@ life360:
       password: !secret life360_password
 
 device_tracker:
-  - platform: icloud3_dev
+  - platform: icloud3
     username: !secret email_trevin
     password: !secret icloud_password
     tracking_method: famshr
@@ -63,9 +73,9 @@ alexa_media:
         - "Kid's Room"
         - "Attic"
 
-bond:
-  host: 192.168.1.165
-  token: !secret bond_token
+#bond:
+#  host: 192.168.1.165
+#  token: !secret bond_token
 
 # IFTTT
 ifttt:
@@ -79,29 +89,29 @@ notify:
     services:
       - service: ios_trevin_iphone
       - service: ios_allison_iphone
-
-#kumo:
-#  username: !secret email_trevin
-#  password: !secret kumo_password
-#  prefer_cache: true
-#  connect_timeout: 1.5
-#  response_timeout: 8.0
-
-weather:
-  - platform: openweathermap
-    api_key: !secret openweathermap_key
-
-#tuya:
-#  username: !secret tuya_username
-#  password: !secret tuya_password
-#  country_code: 1
+  - platform: telegram
+    name: telegram_chow_bot
+    chat_id: 391800743
 
 panel_custom:
-  - name: zwavegraph2
+  - name: zwave-graph-panel
+    url_path: zwave-graph
     sidebar_title: Z-Wave Graph
-    sidebar_icon: mdi:access-point-network
-    url_path: zwave
+    sidebar_icon: mdi:z-wave
+    module_url: /local/zwavegraph3.js
+    config:
+      # ranker - pick one: network-simplex, tight-tree, longest-path
+      ranker: network-simplex
+      # edge_visibility - pick one: relevant, all
+      edge_visibility: relevant
+      # grouping - pick one: z-wave, ungrouped
+      grouping: z-wave
 
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_bot_key
+    allowed_chat_ids:
+      - 391800743
 tts:
   - platform: google_translate
     service_name: google_say
@@ -114,6 +124,7 @@ zwave:
 automation: !include automations.yaml
 binary_sensor: !include sensors_binary.yaml
 group: !include groups.yaml
+light: !include lights.yaml
 ios: !include ios_categories.yaml
 sensor: !include sensors.yaml
 script: !include scripts.yaml
