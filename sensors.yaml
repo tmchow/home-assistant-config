@@ -14,36 +14,69 @@
 #### AMBIENT ###################
 
 
+# Climate sensors from the hvac system
+- platform: template
+  sensors:
+    house_main_temperature:
+      unique_id: sensor.house_main_temperature
+      value_template: "{{ state_attr('climate.main', 'current_temperature') }}"
+      unit_of_measurement: "°F"
+      friendly_name: "House Temperature"
+      device_class: temperature
+- platform: template
+  sensors:
+    house_main_humidity:
+      unique_id: sensor.house_main_humidity
+      value_template: "{{ state_attr('climate.main', 'current_humidity') }}"
+      unit_of_measurement: "%"
+      friendly_name: "House Humidity"
+      device_class: humidity
+- platform: template
+  sensors:
+    attic_temperature:
+      unique_id: sensor.attic_temperature
+      value_template: "{{ state_attr('climate.attic', 'current_temperature') }}"
+      unit_of_measurement: "°F"
+      friendly_name: "Attic Temperature"
+      device_class: temperature
+- platform: template
+  sensors:
+    attic_humidity:
+      unique_id: sensor.attic_humidity
+      value_template: "{{ state_attr('climate.attic', 'current_humidity') }}"
+      unit_of_measurement: "%"
+      friendly_name: "Attic Humidity"
+      device_class: humidity
 
 #### BATTERY ###################
-- platform: attributes
-  friendly_name: "Batteries"
-  attribute: battery_level
-  unit_of_measurement: "%"
-  entities:
-    - zwave.playroom_multisensor
-    - zwave.foyer_multisensor
-    - zwave.front_door_lock
-    - zwave.kids_room_multisensor
-    - zwave.master_bedroom_multisensor
-    - zwave.playroom_multisensor
-    - zwave.basement_dehumidifier_flood_sensor
-    - zwave.basement_water_tank_flood_sensor
-    - zwave.bathroom_2f_flood_sensor
-    - zwave.kitchen_sink_flood_sensor
+#- platform: attributes
+#  friendly_name: "Batteries"
+#  attribute: battery_level
+#  unit_of_measurement: "%"
+#  entities:
+#    - zwave.playroom_multisensor
+#    - zwave.foyer_multisensor
+#    - zwave.front_door_lock
+#    - zwave.kids_room_multisensor
+#    - zwave.master_bedroom_multisensor
+#    - zwave.playroom_multisensor
+#    - zwave.basement_dehumidifier_flood_sensor
+#    - zwave.basement_water_tank_flood_sensor
+#    - zwave.bathroom_2f_flood_sensor
+#    - zwave.kitchen_sink_flood_sensor
 
-- platform: attributes
-  friendly_name: "Batteries - Abode"
-  attribute: battery_low
-  entities:
-    - binary_sensor.back_door
-    - binary_sensor.dining_room_glass
-    - binary_sensor.foyer_glass_sensor
-    - binary_sensor.front_door
-    - binary_sensor.front_right_window
-    - binary_sensor.keypad
-    - binary_sensor.side_door
-    - binary_sensor.siren
+#- platform: attributes
+#  friendly_name: "Batteries - Abode"
+#  attribute: battery_low
+#  entities:
+#    - binary_sensor.back_door
+#    - binary_sensor.dining_room_glass
+#    - binary_sensor.foyer_glass_sensor
+#    - binary_sensor.front_door
+#    - binary_sensor.front_right_window
+#    - binary_sensor.keypad
+#    - binary_sensor.side_door
+#    - binary_sensor.siren
 
 #### NETWORKING ################
 

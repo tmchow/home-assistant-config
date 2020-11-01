@@ -212,3 +212,128 @@
       message: 'Attic thermostat conflict (Attic: {{ states(''climate.attic'') }},
         Main: {{ states(''climate.main'') }})'
     service: notify.mobile_app_trevin_iphone
+- id: '1603744072253'
+  alias: Kids Room Too Cold
+  description: Turn on heater if falls below threshold
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.kids_room_temperature
+    below: '71'
+    for: 00:02:00
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 79ffa4a717c311eb8a47d38b94d19d31
+    entity_id: switch.kids_room_heater
+    domain: switch
+  - service: notify.telegram_chow_bot
+    data:
+      message: '*Kids Room:* too cold ({{ states(''sensor.kids_room_heater'') }} degrees)
+
+        *Heater:* turning on'
+  mode: single
+- id: '1603752769952'
+  alias: Kids Room Maintain Temp (Night)
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.kids_room_temperature
+    below: '74'
+  - platform: numeric_state
+    entity_id: sensor.kids_room_temperature
+    above: '76'
+  condition:
+  - condition: time
+    after: '18:30:00'
+    before: 06:00:00
+  action:
+  - choose:
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.kids_room_temperature
+        below: '74'
+      sequence:
+      - type: turn_on
+        device_id: 79ffa4a717c311eb8a47d38b94d19d31
+        entity_id: switch.kids_room_heater
+        domain: switch
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.kids_room_temperature
+        above: '76'
+      sequence:
+      - type: turn_off
+        device_id: 79ffa4a717c311eb8a47d38b94d19d31
+        entity_id: switch.kids_room_heater
+        domain: switch
+    default: []
+  - service: notify.telegram_chow_bot
+    data:
+      message: '*Maintain Room Temp (Night)*
+
+        *Kids Room Temp:* {{ states(''sensor.kids_room_temperature'') }} degrees
+
+        *Heater:* Turning {{ states(''switch.kids_room_heater'') }}'
+  mode: single
+- id: '1603853146730'
+  alias: Kids Room Maintain Temp (Weekday)
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.kids_room_temperature
+    below: '72'
+  - platform: numeric_state
+    entity_id: sensor.kids_room_temperature
+    above: '74'
+  condition:
+  - condition: time
+    after: 07:30:00
+    before: '15:00:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - choose:
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.kids_room_temperature
+        below: '72'
+      sequence:
+      - type: turn_on
+        device_id: 79ffa4a717c311eb8a47d38b94d19d31
+        entity_id: switch.kids_room_heater
+        domain: switch
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.kids_room_temperature
+        above: '74'
+      sequence:
+      - type: turn_off
+        device_id: 79ffa4a717c311eb8a47d38b94d19d31
+        entity_id: switch.kids_room_heater
+        domain: switch
+    default: []
+  - service: notify.telegram_chow_bot
+    data:
+      message: '*Maintain Room Temp (Weekday)*
+
+        *Kids Room Temp:* {{ states(''sensor.kids_room_temperature'') }} degrees
+
+        *Heater:* Turning {{ states(''switch.kids_room_heater'') }}'
+  mode: single
+- id: '1603909881182'
+  alias: Notify on kid's room temp change
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.kids_room_temperature
+  condition: []
+  action:
+  - service: notify.telegram_chow_bot
+    data:
+      message: '*Room Temp Change*: {{ states(''sensor.kids_room_temperature'') }}
+        degrees | {{ states(''switch.kids_room_heater'') }}'
+  mode: single
