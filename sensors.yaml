@@ -11,6 +11,13 @@
   destination: person.allison
   region: 'US'
 
+# https://github.com/eifinger/open_route_service
+- platform: open_route_service
+  api_key: !secret openrouteservice_key
+  name: Trevin to Ali Travel Time
+  origin_entity_id: person.trevin
+  destination_entity_id: person.allison
+
 #### AMBIENT ###################
 
 
