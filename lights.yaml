@@ -18,3 +18,16 @@
     - light.front_porch_light
     - light.back_porch_light
     - light.side_door_light
+
+- platform: group
+  name: Kids Room Ceiling Lights
+  entities:
+    - light.kids_ceiling_light_1
+    - light.kids_ceiling_light_2
+
+- platform: group
+  name: Kids Room Lights
+  entities:
+    - light.kids_ceiling_light_1
+    - light.kids_ceiling_light_2
+    - light.kids_bed_lamp

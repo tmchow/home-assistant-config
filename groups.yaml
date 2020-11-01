@@ -31,9 +31,3 @@ doors:
     - binary_sensor.front_door
     - binary_sensor.side_door
     - binary_sensor.back_door
-
-lights_kids_ceiling:
-  name: Kid's Ceiling Light
-  entities:
-    - light.kids_ceiling_light_1
-    - light.kids_ceiling_light_2
