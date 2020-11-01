@@ -330,10 +330,12 @@
   trigger:
   - platform: state
     entity_id: sensor.kids_room_temperature
+  - platform: state
+    entity_id: switch.kids_room_heater
   condition: []
   action:
   - service: notify.telegram_chow_bot
     data:
-      message: '*Room Temp Change*: {{ states(''sensor.kids_room_temperature'') }}
-        degrees | {{ states(''switch.kids_room_heater'') }}'
+      message: "*Room Temp*: {{ states('sensor.kids_room_temperature') }} degrees\
+        \ \n*Heater*: {{ states('switch.kids_room_heater') }}"
   mode: single
