@@ -73,10 +73,6 @@ alexa_media:
         - "Kid's Room"
         - "Attic"
 
-#bond:
-#  host: 192.168.1.165
-#  token: !secret bond_token
-
 # IFTTT
 ifttt:
   key: !secret ifttt_key
@@ -123,10 +119,12 @@ zwave:
 
 automation: !include automations.yaml
 binary_sensor: !include sensors_binary.yaml
+climate: !include climate.yaml
 group: !include groups.yaml
-light: !include lights.yaml
+homekit: !include homekit.yaml
 ios: !include ios_categories.yaml
+light: !include lights.yaml
 sensor: !include sensors.yaml
 script: !include scripts.yaml
 zone: !include zones.yaml
-homekit: !include homekit.yaml
+

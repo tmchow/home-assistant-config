@@ -1,0 +1,13 @@
+- platform: generic_thermostat
+  name: Kids Room
+  heater: switch.kids_room_heater
+  target_sensor: sensor.kids_room_temperature
+  min_temp: 67
+  max_temp: 78
+  cold_tolerance: 0.3
+  hot_tolerance: 0.3
+  min_cycle_duration:
+    seconds: 15
+  initial_hvac_mode: "off"
+  away_temp: 68
+  precision: 1.0
