@@ -17,6 +17,8 @@
   name: Trevin to Ali Travel Time
   origin_entity_id: person.trevin
   destination_entity_id: person.allison
+  origin_reverse_geocode_enabled: true
+  destination_reverse_geocode_enabled: true
 
 #### AMBIENT ###################
 
