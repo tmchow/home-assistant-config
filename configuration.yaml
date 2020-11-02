@@ -38,6 +38,9 @@ cloud:
       climate.main:
         name: Main Thermostat
         description: Thermostat for house
+      climate.kids_room:
+        name: Kids Room Thermostat
+        description: Heater for Kids Room
 
 mqtt:
   broker: 192.168.1.161
