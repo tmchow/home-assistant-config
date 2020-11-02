@@ -332,10 +332,29 @@
     entity_id: sensor.kids_room_temperature
   - platform: state
     entity_id: switch.kids_room_heater
-  condition: []
+  condition:
+  - condition: template
+    value_template: '{{ trigger.to_state.state != trigger.from_state.state }}'
   action:
   - service: notify.telegram_chow_bot
     data:
-      message: "*Room Temp*: {{ states('sensor.kids_room_temperature') }} degrees\
-        \ \n*Heater*: {{ states('switch.kids_room_heater') }}"
+      message: '*Kids Room Temp*: {{ states(''sensor.kids_room_temperature'') }} degrees
+        (Prev: {{ trigger.from_state.state }})
+
+        *Heater*: {{ states(''switch.kids_room_heater'') }}'
+  mode: single
+- id: '1604296618320'
+  alias: Notify on Master Bedroom Sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.master_bedroom_temperature
+  condition:
+  - condition: template
+    value_template: '{{ trigger.to_state.state != trigger.from_state.state }}'
+  action:
+  - service: notify.telegram_chow_bot
+    data:
+      message: '*Master Bedroom Temp*: {{ states(''sensor.master_bedroom_temperature'')
+        }} (Prev: {{ trigger.from_state.state }}) degrees'
   mode: single
