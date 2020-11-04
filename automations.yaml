@@ -338,8 +338,8 @@
   action:
   - service: notify.telegram_chow_bot
     data:
-      message: '*Kids Room Temp*: {{ states(''sensor.kids_room_temperature'') }} degrees
-        (Prev: {{ trigger.from_state.state }})
+      message: '*Kids Room Temp*: {{ states(''sensor.kids_room_temperature'') }} (Prev:
+        {{ trigger.from_state.state }})
 
         *Heater*: {{ states(''switch.kids_room_heater'') }}'
   mode: single
@@ -356,5 +356,5 @@
   - service: notify.telegram_chow_bot
     data:
       message: '*Master Bedroom Temp*: {{ states(''sensor.master_bedroom_temperature'')
-        }} (Prev: {{ trigger.from_state.state }}) degrees'
+        }} (Prev: {{ trigger.from_state.state }})'
   mode: single
