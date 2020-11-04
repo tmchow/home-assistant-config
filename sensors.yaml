@@ -57,23 +57,6 @@
       friendly_name: "Attic Humidity"
       device_class: humidity
 
-#### BATTERY ###################
-#- platform: attributes
-#  friendly_name: "Batteries"
-#  attribute: battery_level
-#  unit_of_measurement: "%"
-#  entities:
-#    - zwave.playroom_multisensor
-#    - zwave.foyer_multisensor
-#    - zwave.front_door_lock
-#    - zwave.kids_room_multisensor
-#    - zwave.master_bedroom_multisensor
-#    - zwave.playroom_multisensor
-#    - zwave.basement_dehumidifier_flood_sensor
-#    - zwave.basement_water_tank_flood_sensor
-#    - zwave.bathroom_2f_flood_sensor
-#    - zwave.kitchen_sink_flood_sensor
-
 #- platform: attributes
 #  friendly_name: "Batteries - Abode"
 #  attribute: battery_low
