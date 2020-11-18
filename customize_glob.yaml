@@ -2,6 +2,8 @@
   icon: mdi:amazon-alexa
 "device_tracker.iphone*":
   icon: mdi:cellphone-wireless
+"device_tracker.*_watch":
+  icon: mdi:watch-variant
 "device_tracker.life360_*_iphone":
   icon: mdi:cellphone-iphone
 "device_tracker.*_ipad*":
