@@ -1,0 +1,10 @@
+- platform: alexa_media
+  name: alexa_media
+- name: iphone_all
+  platform: group
+  services:
+    - service: mobile_app_trevin_iphone
+    - service: mobile_app_allison_iphone
+- platform: telegram
+  name: telegram_chow_bot
+  chat_id: !secret telegram_bot_chat_id

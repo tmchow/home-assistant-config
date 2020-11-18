@@ -5,10 +5,15 @@ homeassistant:
       trusted_networks:
         - 192.168.1.0/24
         - 10.241.0.0/16
-  customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
 
-#http:
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - 192.168.1.162
+    - 192.168.1.161
+
 #  ip_ban_enabled: true
 #  login_attempts_threshold: 10
 
@@ -42,25 +47,12 @@ cloud:
         name: Kids Room Thermostat
         description: Heater for Kids Room
 
-mqtt:
-  broker: 192.168.1.161
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-  
-life360:
-  accounts:
-    - username: !secret life360_username
-      password: !secret life360_password
-
 device_tracker:
   - platform: icloud3
     username: !secret email_trevin
     password: !secret icloud_password
     tracking_method: famshr
     config_ic3_file_name: /config/config_icloud3.yaml
-#    track_devices:
-#      - trevin_iphone > /local/images/trevin.png
-#      - allison_iphone > /local/images/allison.png
 
 alexa_media:
   accounts:
@@ -73,24 +65,8 @@ alexa_media:
         - "Playroom"
         - "Master Bedroom"
         - "Upstairs Bathroom"
-        - "Kid's Room"
+        - "Kids Room"
         - "Attic"
-
-# IFTTT
-ifttt:
-  key: !secret ifttt_key
-
-notify:
-  - platform: alexa_media
-    name: alexa_media
-  - name: iphone_all
-    platform: group
-    services:
-      - service: ios_trevin_iphone
-      - service: ios_allison_iphone
-  - platform: telegram
-    name: telegram_chow_bot
-    chat_id: 391800743
 
 panel_custom:
   - name: zwave-graph-panel
@@ -110,11 +86,11 @@ telegram_bot:
   - platform: polling
     api_key: !secret telegram_bot_key
     allowed_chat_ids:
-      - 391800743
+      - !secret telegram_bot_chat_id
 tts:
   - platform: google_translate
     service_name: google_say
-    base_url: https://2rpnz0g8hfke9kct9lr3sy7045mtrld1.ui.nabu.casa
+    base_url: !secret hass_nabu_casa_url
 
 zwave:
   usb_path: /dev/ttyACM0
@@ -127,6 +103,7 @@ group: !include groups.yaml
 homekit: !include homekit.yaml
 ios: !include ios_categories.yaml
 light: !include lights.yaml
+notify: !include notify.yaml
 sensor: !include sensors.yaml
 script: !include scripts.yaml
 zone: !include zones.yaml
