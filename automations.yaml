@@ -1,5 +1,5 @@
 - alias: 'Location: Trevin almost home'
-  initial_state: 'true'
+  initial_state: true
   trigger:
   - platform: zone
     entity_id: person.trevin
@@ -20,7 +20,7 @@
           thread-id: arrival_trevin_action
   id: 17061c76080641d28fc8e328e2e983ba
 - alias: 'Location: Allison almost home'
-  initial_state: 'true'
+  initial_state: true
   trigger:
   - platform: zone
     entity_id: person.allison
@@ -166,7 +166,7 @@
   mode: single
 - id: device_tracker_logging
   alias: 'Logging: Person location changes'
-  initial_state: 'on'
+  initial_state: true
   trigger:
   - platform: state
     entity_id:
@@ -218,7 +218,7 @@
   trigger:
   - platform: numeric_state
     entity_id: sensor.kids_room_temperature
-    below: '71'
+    below: 71
     for: 00:02:00
   condition: []
   action:
@@ -238,10 +238,10 @@
   trigger:
   - platform: numeric_state
     entity_id: sensor.kids_room_temperature
-    below: '74'
+    below: 74
   - platform: numeric_state
     entity_id: sensor.kids_room_temperature
-    above: '76'
+    above: 76
   condition:
   - condition: time
     after: '18:30:00'
@@ -281,10 +281,10 @@
   trigger:
   - platform: numeric_state
     entity_id: sensor.kids_room_temperature
-    below: '72'
+    below: 72
   - platform: numeric_state
     entity_id: sensor.kids_room_temperature
-    above: '74'
+    above: 74
   condition:
   - condition: time
     after: 07:30:00
