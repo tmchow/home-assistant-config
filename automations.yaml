@@ -59,7 +59,7 @@
     event_data:
       actionName: ALARM_DISARM
   action:
-    service: notify.ios_trevin_iphone
+    service: notify.mobile_app_trevin_iphone
     data:
       message: Alarm DisArmed
       data:
@@ -89,7 +89,7 @@
           badge: 0
           sound: default
           thread-id: trevin_arrival
-  - service: notify.ios_trevin_iphone
+  - service: notify.mobile_app_trevin_iphone
     data:
       message: 'DEBUG: Notify + Alexa announce Trevin arrival'
       data:
@@ -106,7 +106,7 @@
     event_data:
       actionName: NOTIFY_ARRIVAL_TREVIN
   action:
-  - service: notify.ios_trevin_iphone
+  - service: notify.mobile_app_trevin_iphone
     data:
       message: 'DEBUG: Notified Trevin arrival by phone only'
       data:
@@ -139,7 +139,7 @@
           badge: 0
           sound: default
           thread-id: trevin_work_departure
-  - service: notify.ios_trevin_iphone
+  - service: notify.mobile_app_trevin_iphone
     data:
       message: 'DEBUG: Notify Trevin departure'
       data:
@@ -357,4 +357,48 @@
     data:
       message: '*Master Bedroom Temp*: {{ states(''sensor.master_bedroom_temperature'')
         }} (Prev: {{ trigger.from_state.state }})'
+  mode: single
+- id: '1604512615108'
+  alias: Notify on Start/Shutdown
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: shutdown
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - service: notify.telegram_chow_bot
+    data:
+      message: 'Home Assistant: {{ trigger.event }}'
+  mode: single
+- id: '1605397615588'
+  alias: 'Notify: HA Update Avail'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.updater
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: script.notify_all_engines
+    data:
+      title: System Notification
+      message: Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version')
+        }} is available.
+  mode: single
+- id: '1605688547007'
+  alias: 'Notify: Alarm State Change'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.abode_alarm
+  condition:
+  - condition: template
+    value_template: '{{ trigger.to_state.state != trigger.from_state.state }}'
+  action:
+  - service: notify.telegram_chow_bot
+    data:
+      message: 'Alarm: {{ trigger.to_state.state }}'
   mode: single
